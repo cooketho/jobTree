@@ -37,7 +37,7 @@ from jobTree.batchSystems.multijob import MultiTarget
 
 class MemoryString:
     def __init__(self, string):
-        if string[-1] == 'K' or string[-1] == 'M' or string[-1] == 'G':
+        if string[-1] == 'K' or string[-1] == 'M' or string[-1] == 'G' or string[-1] == 'T':
             self.unit = string[-1]
             self.val = float(string[:-1])
         else:
@@ -60,6 +60,8 @@ class MemoryString:
             return self.val * 1048576
         elif self.unit == 'G':
             return self.val * 1073741824
+        elif self.unit == 'T':
+            return self.val * 1099511627776
 
     def __cmp__(self, other):
         return cmp(self.bytes, other.bytes)
