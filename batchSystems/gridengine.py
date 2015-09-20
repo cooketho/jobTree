@@ -71,7 +71,7 @@ def prepareQsub(cpu, mem):
                      "LD_LIBRARY_PATH=%s" % os.environ["LD_LIBRARY_PATH"]]
     reqline = list()
     if cpu is not None:
-        reqline.append("p="+str(cpu))
+        qsubline.extend(["-pe", "shm", str(int(cpu))])
     if mem is not None:
         reqline.append("vf="+str(mem/ 1024)+"K")
         reqline.append("h_vmem="+str(mem/ 1024)+"K")
